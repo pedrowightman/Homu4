@@ -24,7 +24,7 @@ public class ExperimentDB {
         int cont=0;
         String url = "jdbc:postgresql://localhost:5432/pruebamapir";
         String user = "postgres";
-        String password = "password";
+        String password = "otefina28";
 
         int scale = 5;
         int correction = 0;
@@ -58,49 +58,7 @@ public class ExperimentDB {
         
         boolean summarized = true;
               
-        Point location = new Point("",4.655659,-74.061467,Approximation.NONE, Relocation.NONE,scale); //Original
-        //Point location = new Point("",4.6776598,-74.0527141,Approximation.NONE, Relocation.NONE,scale); //Parque 93
-        //Point location = new Point("",4.707942,-74.1073024,Approximation.NONE, Relocation.NONE,scale); //Portal 80
-        //Point location = new Point("",4.6591177,-74.0641296,Approximation.NONE, Relocation.NONE,scale); //Calle 72, Kra 7a
-        //Point location = new Point("",4.617481,-74.137144,Approximation.NONE, Relocation.NONE,scale); //Plaza de las Américas, Kennedy
-        
-        
-
-        //Locate the point in the middle of the centroid 1.5-1.5
-        //location = Geohash.calculateMainCentroide(location, scale);
-        
-        
-        /*
-        //Locate the point in the middle of the centroid 1.75-1.75
-        location = Geohash.calculateMainCentroide(location, scale);
-        double disttemp = Geohash.calcDiffGridCell(scale, false);
-        location.addLat(disttemp*0.25);
-        location.addLon(disttemp*0.25);
-        //Point mc = Geohash.calculateMainCentroide(location, scale);       
-        //location = Geohash.calcNextQuadrant(mc, Approximation.UPRIGHT, scale, 0.25);
-        //calculatePointsHOM2Radii_1_75_1_75
-        */
-        
-        
-        //Locate the point in the middle of the centroid 1.125-1.5
-        //location = Geohash.calculateMainCentroide(location, scale);
-        //double disttemp = Geohash.calcDiffGridCell(scale, false);
-        //location.addLon(-disttemp*0.375);
-        //calculatePointsHOM2Radii_1_125_1_5
-        
-        
-        /*
-        //Locate the point in the middle of the centroid 1.625-1.875
-        location = Geohash.calculateMainCentroide(location, scale);
-        double disttemp = Geohash.calcDiffGridCell(scale, false);
-        location.addLat(disttemp*0.125);
-        location.addLon(disttemp*0.375);
-        //calculatePointsHOM2Radii_1_625_1_875
-        */
-        
-        location.calcSetHashVal();
-        location.calcSetNumVal();
-        
+        Point location = new Point();
         ArrayList<Point> points = new ArrayList();
         ArrayList<String> hashValues = new ArrayList();
         ArrayList<Long> hashNumValues = new ArrayList();
@@ -117,6 +75,14 @@ public class ExperimentDB {
         ArrayList<Long> hashNumValues_centroids = new ArrayList();
         
         
+        //location = new Point("",4.655659,-74.061467,Approximation.NONE, Relocation.NONE,scale); //Original
+        //location = new Point("",4.6776598,-74.0527141,Approximation.NONE, Relocation.NONE,scale); //Parque 93
+        //location = new Point("",4.707942,-74.1073024,Approximation.NONE, Relocation.NONE,scale); //Portal 80
+        //location = new Point("",4.6591177,-74.0641296,Approximation.NONE, Relocation.NONE,scale); //Calle 72, Kra 7a
+        location = new Point("",4.617481,-74.137144,Approximation.NONE, Relocation.NONE,scale); //Plaza de las Américas, Kennedy
+
+
+        
         Approximation app;
         for (String table : tables) {
             if(table.equals("geohashval2")){
@@ -125,6 +91,46 @@ public class ExperimentDB {
                 app = Approximation.KING;
             }
             for (int i = initScale; i <= finalScale; i++) {
+                
+                
+
+                //Locate the point in the middle of the centroid 1.5-1.5
+                //location = Geohash.calculateMainCentroide(location, i);
+
+
+                
+                //Locate the point in the middle of the centroid 1.75-1.75
+                location = Geohash.calculateMainCentroide(location, i);
+                double disttemp = Geohash.calcDiffGridCell(i, true);
+                location.addLat(disttemp*0.2499);
+                disttemp = Geohash.calcDiffGridCell(i, false);
+                location.addLon(disttemp*0.2499);
+                //Point mc = Geohash.calculateMainCentroide(location, scale);       
+                //location = Geohash.calcNextQuadrant(mc, Approximation.UPRIGHT, scale, 0.25);
+                //calculatePointsHOM2Radii_1_75_1_75
+                
+
+
+                //Locate the point in the middle of the centroid 1.125-1.5
+                //location = Geohash.calculateMainCentroide(location, scale);
+                //double disttemp = Geohash.calcDiffGridCell(scale, false);
+                //location.addLon(-disttemp*0.375);
+                //calculatePointsHOM2Radii_1_125_1_5
+
+
+                /*
+                //Locate the point in the middle of the centroid 1.625-1.875
+                location = Geohash.calculateMainCentroide(location, scale);
+                double disttemp = Geohash.calcDiffGridCell(scale, false);
+                location.addLat(disttemp*0.125);
+                location.addLon(disttemp*0.375);
+                //calculatePointsHOM2Radii_1_625_1_875
+                */
+
+                location.calcSetHashVal();
+                location.calcSetNumVal();
+                
+                
                 points.clear();
                 hashValues.clear();
                 hashNumValues.clear();

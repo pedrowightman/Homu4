@@ -228,7 +228,8 @@ public class Experiment2 extends Experiment{
                 }
                 s = s +")\n" +
                 "group by poi2.id, poi2.name, poi2.lat, poi2.lon;";
-                    
+                   
+                cont = cont;
                     
                 break;
             

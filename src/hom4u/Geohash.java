@@ -44,8 +44,8 @@ public class Geohash {
         StringBuilder sb = new StringBuilder();
         int numDigits, precision;
        
-        String sLat = calcGeoHash(p.getLat(),p.getScale(), true);
-        String sLon = calcGeoHash(p.getLon(),p.getScale(),false);
+        String sLat = calcGeoHash(p.getLat(),scale, true);
+        String sLon = calcGeoHash(p.getLon(),scale,false);
         
         
         //System.out.println("SLat "+sLat);
@@ -1796,7 +1796,7 @@ Cuadrante 8:
     
     public static Point calcNextQuadrant(Point p, Approximation app, int scale, double d2){
 
-        double d = d2+0.001;
+        double d = d2+0.001; //Include very small difference to guarantee that the projection is on the quandrant
         double numCellsLat = 180/Math.pow(2,Geohash.getNumDigitsByPrecision(scale, true));
         double numCellsLon = 360/Math.pow(2,Geohash.getNumDigitsByPrecision(scale, false));
         
