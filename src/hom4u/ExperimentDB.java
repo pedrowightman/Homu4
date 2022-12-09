@@ -22,9 +22,9 @@ public class ExperimentDB {
     public static void main(String[] args) {
 
         int cont=0;
-        String url = "jdbc:postgresql://localhost:5432/pruebamapir";
+        String url = "jdbc:postgresql://localhost:5432/pruebahom4u";
         String user = "postgres";
-        String password = "otefina28";
+        String password = "the_password";
 
         int scale = 5;
         int correction = 0;
@@ -156,7 +156,6 @@ public class ExperimentDB {
                 
                 pointsHOM2.add(location);
                 pointsHOM2.addAll(Geohash.calculatePointsHOM2Radii_1_75_1_75(location, i));
-                //pointsHOM2.addAll(Geohash.calculatePointsHOM2Radii(location, i));
                 
                 for (Point point : pointsHOM2) {
                     point.calcSetHashVal();
